@@ -1,7 +1,7 @@
 let cols, rows;
 let size = 10;
 let font;
-let threshold = 100;
+let threshold = -0.4;
 let angle = 0;
 
 function preload() {
@@ -18,19 +18,19 @@ function setup() {
 
 function draw() {
   background(0);
-  angle += 0.02; // Increment the angle for animation
-
+  angle += .1; 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
-      let x = size / 2 + i * size + 20 * cos(angle + i * 0.1);
-      let y = size / 2 + j * size + 20 * sin(angle + j * 0.1);
+      let x = size / 2 + i * size
+      let y = size / 2 + j * size
       let d = dist(x, y, width / 2, height / 2);
-      fill(255);
+      let path = tan(d + angle)
+      fill(100);
       textFont(font);
-      if (d > threshold) {
-        text("+", x, y);
+      if (path > threshold) {
+        text("0", x, y);
       } else {
-        text("+", x, y);
+        text(".", x, y);
       }
     }
   }
